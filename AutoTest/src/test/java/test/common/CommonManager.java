@@ -1,9 +1,13 @@
 package test.common;
 
 import java.util.Properties;
+import java.util.function.Function;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.base.Predicate;
 
 public abstract class CommonManager {
 
@@ -28,5 +32,15 @@ public abstract class CommonManager {
         if (driver != null) {
             driver.quit();
         }
+    }
+    
+    public void waitUntil(ExpectedCondition<?> arg0){
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	wait.until(arg0);
     }
 }

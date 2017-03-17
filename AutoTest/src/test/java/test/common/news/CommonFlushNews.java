@@ -1,6 +1,7 @@
 package test.common.news;
 
 import java.util.Properties;
+import java.util.function.Function;
 
 import org.openqa.selenium.*;
 
@@ -19,9 +20,9 @@ public class CommonFlushNews extends CommonManager {
   public void flushNews() {
     driver.get(baseURL + "/");
     driver.findElement(By.id("topics")).click();
-    wait.until(titleContains("Yahoo!ニュース"));
+    waitUntil(titleContains("Yahoo!ニュース"));
     driver.findElement(By.linkText("速報")).click();
-    wait.until(titleContains("速報"));
+    waitUntil(titleContains("速報"));
     
     String filePath = CaputureUtils.getFilePath(getClass().getName(), browserName, "flushNews");
     CaputureUtils.getScreenshot((TakesScreenshot) driver, filePath);

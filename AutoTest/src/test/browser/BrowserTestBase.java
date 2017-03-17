@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,6 +14,7 @@ public abstract class BrowserTestBase {
 
     protected static WebDriver driver;
     protected static Properties prop;
+    protected static DesiredCapabilities  capabilities;
 
     @BeforeClass
     public static void beforeClass() {
@@ -29,14 +31,15 @@ public abstract class BrowserTestBase {
     @Before
     public void preTest() {
         if (driver != null) {
-            return;
+//            return;
+        	driver = null;
         }
         initDriver();
     }
 
     @After
     public void postTest() {
-        // driver.quit();
+        driver.quit();
     }
 
     public static WebDriver getDriver() {

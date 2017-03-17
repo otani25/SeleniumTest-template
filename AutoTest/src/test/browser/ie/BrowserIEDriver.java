@@ -1,31 +1,28 @@
-package test.browser.firefox;
+package test.browser.ie;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import test.browser.BrowserTestBase;
 
-
-public abstract class BrowserFirefoxDriver extends BrowserTestBase {
-
-    protected static FirefoxProfile profile;
-
+public abstract class BrowserIEDriver extends BrowserTestBase{
+    
     @Override
     protected void initDriver() {
-        profile = new FirefoxProfile();
+    	capabilities = DesiredCapabilities.internetExplorer();
         setupProfile();
 
-        String driverPath = getTestInfo().getProperty("firefoxDriver");
+        // 作成したプロファイルでIE(のドライバー)を起動する
+        String driverPath = getTestInfo().getProperty("ieDriver");
         if(driverPath.contains("http")){
-        	capabilities = DesiredCapabilities.firefox();
             capabilities.setPlatform(Platform.WINDOWS);
-            capabilities.setBrowserName("firefox");
+            capabilities.setBrowserName("internet explorer");
             try {
     			driver = new RemoteWebDriver(new URL(driverPath), capabilities);
     		} catch (MalformedURLException e) {
@@ -34,11 +31,12 @@ public abstract class BrowserFirefoxDriver extends BrowserTestBase {
     		}
         }
         else{
-        	System.setProperty("webdriver.gecko.driver", driverPath);
-            // 作成したプロファイルでFirefox(のドライバー)を起動する
-            driver = new FirefoxDriver(profile);
+          File file = new File(driverPath);
+      	  System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+          driver = new InternetExplorerDriver(capabilities);
         }
     }
 
     abstract protected void setupProfile();
+
 }
