@@ -1,5 +1,8 @@
 package test.browser.firefox.news;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.junit.Test;
 
 import test.browser.firefox.BrowserFirefoxDriver;
@@ -11,6 +14,7 @@ import test.common.news.CommonFlushNews;
 public class FFFlushNewsTest extends BrowserFirefoxDriver {
 
     private CommonFlushNews newsTest;
+    private static Logger LOG = Logger.getLogger(FFFlushNewsTest.class.getName()); 
 
     @Override
     protected void setupProfile() {
@@ -26,6 +30,7 @@ public class FFFlushNewsTest extends BrowserFirefoxDriver {
     // ニュースのテスト
     @Test
     public void flushNews() {
+    	LOG.log(Level.INFO, "【Firefox】test");
     	newsTest.flushNews();
     }
 

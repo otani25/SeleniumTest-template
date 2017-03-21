@@ -12,6 +12,8 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class CaputureUtils {
 
+    private static Logger LOG = Logger.getLogger(CaputureUtils.class.getName()); 
+    
     public static void getScreenshot(TakesScreenshot driver, String... params) {
         String filePath = getFilePath(params);
         getScreenshot(driver, filePath);
@@ -21,9 +23,9 @@ public class CaputureUtils {
         File scrFile = driver.getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile, new File(filePath));
+            LOG.log(Level.WARNING,"【CAPUTURE】"+filePath);
         } catch (IOException e) {
-            Logger logger = Logger.getLogger("CaputureUtils");
-            logger.log(Level.WARNING,"aa");
+            LOG.log(Level.WARNING,"【CAPUTURE】IOException!!",e);
         }
     }
 
