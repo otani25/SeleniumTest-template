@@ -11,7 +11,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import test.browser.BrowserTestBase;
 
-
 public abstract class BrowserFirefoxDriver extends BrowserTestBase {
 
     protected static FirefoxProfile profile;
@@ -21,22 +20,23 @@ public abstract class BrowserFirefoxDriver extends BrowserTestBase {
         profile = new FirefoxProfile();
         setupProfile();
 
-        String driverPath = getTestInfo().getProperty("firefoxDriver");
-        if(driverPath.contains("http")){
-        	capabilities = DesiredCapabilities.firefox();
-            capabilities.setPlatform(Platform.WINDOWS);
-            capabilities.setBrowserName("firefox");
+        String driverPath = getBrowserInfo().getProperty( "firefoxDriver" );
+        if ( driverPath.contains( "http" ) ) {
+            capabilities = DesiredCapabilities.firefox();
+            capabilities.setPlatform( Platform.WINDOWS );
+            capabilities.setBrowserName( "firefox" );
             try {
-    			driver = new RemoteWebDriver(new URL(driverPath), capabilities);
-    		} catch (MalformedURLException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+                driver = new RemoteWebDriver( new URL( driverPath ), capabilities );
+            }
+            catch ( MalformedURLException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        else{
-        	System.setProperty("webdriver.gecko.driver", driverPath);
+        else {
+            System.setProperty( "webdriver.gecko.driver", driverPath );
             // 作成したプロファイルでFirefox(のドライバー)を起動する
-            driver = new FirefoxDriver(profile);
+            driver = new FirefoxDriver( profile );
         }
     }
 

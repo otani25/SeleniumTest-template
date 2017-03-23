@@ -16,7 +16,7 @@ public class IEFlushNewsTest extends BrowserIEDriver {
     @Override
     public void preTest() {
         super.preTest();
-        newsTest = new CommonFlushNews("IE", getDriver(), getTestInfo());
+        newsTest = new CommonFlushNews("IE", getDriver(), "testInfo/news.properties");
     }
 
     // ニュースのテスト
@@ -24,11 +24,5 @@ public class IEFlushNewsTest extends BrowserIEDriver {
     public void flushNews() {
     	newsTest.flushNews();
     }
-
-	@Override
-	protected String getinitialURL() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

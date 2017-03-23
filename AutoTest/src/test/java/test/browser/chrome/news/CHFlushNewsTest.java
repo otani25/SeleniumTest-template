@@ -16,7 +16,7 @@ public class CHFlushNewsTest extends BrowserChromeDriver {
     @Override
     public void preTest() {
         super.preTest();
-        newsTest = new CommonFlushNews("Chrome", getDriver(), getTestInfo());
+        newsTest = new CommonFlushNews("Chrome", getDriver(), "testInfo/news.properties");
     }
 
     // ニュースのテスト
@@ -24,11 +24,5 @@ public class CHFlushNewsTest extends BrowserChromeDriver {
     public void flushNews() {
     	newsTest.flushNews();
     }
-
-	@Override
-	protected String getinitialURL() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

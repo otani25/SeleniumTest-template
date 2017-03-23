@@ -11,29 +11,30 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import test.browser.BrowserTestBase;
 
-public abstract class BrowserIEDriver extends BrowserTestBase{
-    
+public abstract class BrowserIEDriver extends BrowserTestBase {
+
     @Override
     protected void initDriver() {
-    	capabilities = DesiredCapabilities.internetExplorer();
+        capabilities = DesiredCapabilities.internetExplorer();
         setupProfile();
 
         // 作成したプロファイルでIE(のドライバー)を起動する
-        String driverPath = getTestInfo().getProperty("ieDriver");
-        if(driverPath.contains("http")){
-            capabilities.setPlatform(Platform.WINDOWS);
-            capabilities.setBrowserName("internet explorer");
+        String driverPath = getBrowserInfo().getProperty( "ieDriver" );
+        if ( driverPath.contains( "http" ) ) {
+            capabilities.setPlatform( Platform.WINDOWS );
+            capabilities.setBrowserName( "internet explorer" );
             try {
-    			driver = new RemoteWebDriver(new URL(driverPath), capabilities);
-    		} catch (MalformedURLException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+                driver = new RemoteWebDriver( new URL( driverPath ), capabilities );
+            }
+            catch ( MalformedURLException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        else{
-          File file = new File(driverPath);
-      	  System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-          driver = new InternetExplorerDriver(capabilities);
+        else {
+            File file = new File( driverPath );
+            System.setProperty( "webdriver.ie.driver", file.getAbsolutePath() );
+            driver = new InternetExplorerDriver( capabilities );
         }
     }
 

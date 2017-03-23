@@ -9,7 +9,7 @@ import test.browser.firefox.BrowserFirefoxDriver;
 import test.common.news.CommonFlushNews;
 
 /**
- * Firefoxのニュース画面テスト
+ * FireFoxのニュース画面テスト
  */
 public class FFFlushNewsTest extends BrowserFirefoxDriver {
 
@@ -24,7 +24,7 @@ public class FFFlushNewsTest extends BrowserFirefoxDriver {
     @Override
     public void preTest() {
         super.preTest();
-        newsTest = new CommonFlushNews("Firefox", getDriver(), getTestInfo());
+        newsTest = new CommonFlushNews("Firefox", getDriver(), "testInfo/news.properties");
     }
 
     // ニュースのテスト
@@ -33,10 +33,4 @@ public class FFFlushNewsTest extends BrowserFirefoxDriver {
     	LOG.log(Level.INFO, "【Firefox】test");
     	newsTest.flushNews();
     }
-
-	@Override
-	protected String getinitialURL() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

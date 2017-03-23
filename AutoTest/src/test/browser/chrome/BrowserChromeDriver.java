@@ -14,26 +14,26 @@ public abstract class BrowserChromeDriver extends BrowserTestBase {
 
     @Override
     protected void initDriver() {
-    	capabilities = DesiredCapabilities.chrome();
+        capabilities = DesiredCapabilities.chrome();
         setupProfile();
 
-        // 作成したプロファイルでIE(のドライバー)を起動する
-        String driverPath = getTestInfo().getProperty("chromeDriver");
+        String driverPath = getBrowserInfo().getProperty( "chromeDriver" );
         capabilities = DesiredCapabilities.chrome();
-        if(driverPath.contains("http")){
-            capabilities.setPlatform(Platform.WINDOWS);
-            capabilities.setBrowserName("internet explorer");
+        if ( driverPath.contains( "http" ) ) {
+            capabilities.setPlatform( Platform.WINDOWS );
+            capabilities.setBrowserName( "chrome" );
             try {
-    			driver = new RemoteWebDriver(new URL(driverPath), capabilities);
-    		} catch (MalformedURLException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+                driver = new RemoteWebDriver( new URL( driverPath ), capabilities );
+            }
+            catch ( MalformedURLException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        else{
-          capabilities.setCapability("chrome.binary", getTestInfo().getProperty("chromeBinary"));
-      	  System.setProperty("webdriver.chrome.driver", driverPath);
-          driver = new ChromeDriver(capabilities);
+        else {
+            capabilities.setCapability( "chrome.binary", getBrowserInfo().getProperty( "chromeBinary" ) );
+            System.setProperty( "webdriver.chrome.driver", driverPath );
+            driver = new ChromeDriver( capabilities );
         }
     }
 

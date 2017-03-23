@@ -12,8 +12,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class CommonFlushNews extends CommonManager {
 
-	public CommonFlushNews(String browserName, WebDriver driver, Properties testInfo) {
-		super(browserName, driver, testInfo);
+	public CommonFlushNews(String browserName, WebDriver driver, String testInfoPath) {
+		super(browserName, driver, testInfoPath);
 		// TODO Auto-generated constructor stub
 	}
 
