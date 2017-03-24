@@ -1,4 +1,12 @@
-package test.browser.ie;
+/**
+*
+* クラス名
+*   BrowserIEDriver.java
+*
+* 概要
+*   IE用テストクラスの基底クラス
+*/
+package browser.ie;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -9,7 +17,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import test.browser.BrowserTestBase;
+import browser.BrowserTestBase;
 
 public abstract class BrowserIEDriver extends BrowserTestBase {
 
@@ -20,6 +28,7 @@ public abstract class BrowserIEDriver extends BrowserTestBase {
 
         // 作成したプロファイルでIE(のドライバー)を起動する
         String driverPath = getBrowserInfo().getProperty( "ieDriver" );
+        // SeleniumGridでブラウザ遠隔起動
         if ( driverPath.contains( "http" ) ) {
             capabilities.setPlatform( Platform.WINDOWS );
             capabilities.setBrowserName( "internet explorer" );
@@ -31,6 +40,7 @@ public abstract class BrowserIEDriver extends BrowserTestBase {
                 e.printStackTrace();
             }
         }
+        // ローカル環境のブラウザ起動
         else {
             File file = new File( driverPath );
             System.setProperty( "webdriver.ie.driver", file.getAbsolutePath() );
@@ -38,6 +48,9 @@ public abstract class BrowserIEDriver extends BrowserTestBase {
         }
     }
 
+    /**
+     * ブラウザ初期化オプション
+     */
     abstract protected void setupProfile();
 
 }
